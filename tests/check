@@ -1,8 +1,8 @@
 #!/bin/bash
-set failed=""
-set passed=""
+failed=""
+passed=""
 for x in G_* ; do
-  want_group="$(echo $x | sed -e 's/G_//')"
+  want_group="${x#G_}"
   got_group="$(../symmetry.x -verbose -1 "$x" | awk '/It seems to be the .* point group/{print $6}')"
   # echo "For the $want_group geometry I got $got_group"
   if [ "$want_group" != "$got_group" ] ; then
@@ -11,6 +11,8 @@ for x in G_* ; do
     passed="$passed $want_group"
   fi
 done
-[ ! -z "$passed" ] && echo "Tests passed: $passed"
-[ ! -z "$failed" ] && echo "Tests failed: $failed"
-exit $([ -z "$failed" ])
+[ -n "$passed" ] && echo "Tests passed: $passed"
+if [ -n "$failed" ]; then
+  echo "Tests failed: $failed"
+  exit 1
+fi
