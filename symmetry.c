@@ -379,7 +379,7 @@ if( elem->nparam >= 4 ){
         }
     r = sqrt( r ) ;
     if( r < ToleranceSame ){
-        fprintf( stderr, "Normal collapced!\n" ) ;
+        fprintf( stderr, "Normal collapsed!\n" ) ;
         exit( EXIT_FAILURE ) ;
         }
     for( k = 0 ; k < DIMENSION ; k++ ){
@@ -398,7 +398,7 @@ if( elem->nparam >= 7 ){
         }
     r = sqrt( r ) ;
     if( r < ToleranceSame ){
-        fprintf( stderr, "Direction collapced!\n" ) ;
+        fprintf( stderr, "Direction collapsed!\n" ) ;
         exit( EXIT_FAILURE ) ;
         }
     for( k = 0 ; k < DIMENSION ; k++ ){
@@ -484,7 +484,7 @@ do {
         force[i]   = ( fup + fdn - 2*f ) / ( GradientStep * GradientStep ) ;
         if( verbose > 1 ) printf( "        i = %d, grad = %12.6e, force = %12.6e\n", i, grad[i], force[i] ) ;
         }
-    /* Do a quasy-Newton step */
+    /* Do a quasi-Newton step */
     for( i = 0, snorm = 0 ; i < vars ; i++ ){
         if( force[i] <  0   ) force[i] = -force[i] ;
         if( force[i] < 1e-3 ) force[i] = 1e-3 ;
@@ -655,7 +655,7 @@ for( k = 0, r = 0 ; k < DIMENSION ; k++ ){
     plane->normal[k] = dx[k]/rab ;
     r += midpoint[k]*plane->normal[k] ;
     }
-if( r < 0 ){  /* Reverce normal direction, distance is always positive! */
+if( r < 0 ){  /* Reverse normal direction, distance is always positive! */
     r = -r ;
     for( k = 0 ; k < DIMENSION ; k++ ){
         plane->normal[k] = -plane->normal[k] ;
@@ -1103,7 +1103,7 @@ for( i = 0 ; i < DIMENSION ; i++ ){
     c[i] = Atoms[ic].x[i] - CenterOfSomething[i] ;
     }
 if( ( axis = init_axis_parameters( a, b, c ) ) == NULL ){
-    if( verbose > 0 ) printf( "    no coherrent axis is defined by the points\n" ) ;
+    if( verbose > 0 ) printf( "    no coherent axis is defined by the points\n" ) ;
     return NULL ;
     }
 axis->transform_atom = rotate_atom ;
@@ -1187,7 +1187,7 @@ for( i = 0 ; i < DIMENSION ; i++ )
     b[i] = 2*r*centerpoint[i] - b[i] ;
 /* Do a quick check of geometry validity */
 if( ( axis = init_axis_parameters( a, b, c ) ) == NULL ){
-    if( verbose > 0 ) printf( "    no coherrent improper axis is defined by the points\n" ) ;
+    if( verbose > 0 ) printf( "    no coherent improper axis is defined by the points\n" ) ;
     return NULL ;
     }
 axis->transform_atom = rotate_reflect_atom ;
